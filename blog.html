@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — CS.edu</title>
+<meta name="description" content="Short, focused articles on data structures, algorithms, databases, operating systems, networks, AI and machine learning.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- NAVIGATION BAR (same component as homepage)                   -->
+<!-- ============================================================ -->
+<nav class="navbar navbar-expand-lg navbar-cs">
+  <div class="container">
+    <a class="navbar-brand-cs" href="index.html"><span class="bracket">&lt;</span>CS.edu<span class="bracket">/&gt;</span></a>
+
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse">
+      <i class="bi bi-list fs-2" style="color:var(--text)"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navCollapse">
+      <ul class="navbar-nav mx-auto mt-3 mt-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html#top">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#courses">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#topics">Topics</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#dashboard">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+        <div class="search-box" style="width:220px;">
+          <i class="bi bi-search"></i>
+          <input type="text" id="blogSearchInput" placeholder="Search articles…" autocomplete="off">
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+          <i class="bi bi-sun"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================ -->
+<!-- BLOG HEADER                                                   -->
+<!-- ============================================================ -->
+<header class="hero" style="padding: 4rem 0 2rem;">
+  <div class="container">
+    <span class="hero-kicker">// notes on computer science</span>
+    <h1 style="font-size:clamp(2rem,4vw,3rem);">The CS.edu blog</h1>
+    <p class="lead">Intuition-first articles that sit alongside the courses — read in five minutes, remember for years.</p>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- TOPIC FILTER CHIPS                                            -->
+<!-- ============================================================ -->
+<section class="container mb-3">
+  <div class="d-flex flex-wrap gap-2" id="blogFilters"></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FULL BLOG GRID (no data-limit = render every post)            -->
+<!-- ============================================================ -->
+<section class="section pt-3">
+  <div class="container">
+    <div class="row g-4" id="blogGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+<footer class="footer-cs">
+  <div class="container">
+    <div class="footer-bottom d-flex justify-content-between flex-wrap gap-2">
+      <span>© 2026 CS.edu — built for learners.</span>
+      <a href="index.html" style="margin:0;">← Back to home</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="data.js"></script>
+<script src="script.js"></script>
+<script>
+  /* ---------------------------------------------------------------
+     Page-specific behaviour: topic filter chips for the blog grid.
+     Lives here (not script.js) since it's only relevant to blog.html.
+     --------------------------------------------------------------- */
+  document.addEventListener("DOMContentLoaded", () => {
+    const filterBar = document.getElementById("blogFilters");
+    const grid = document.getElementById("blogGrid");
+    if (!filterBar || typeof BLOG_POSTS === "undefined") return;
+
+    const topics = ["All", ...new Set(BLOG_POSTS.map(p => p.topic))];
+
+    function renderGrid(filter) {
+      const posts = filter === "All" ? BLOG_POSTS : BLOG_POSTS.filter(p => p.topic === filter);
+      grid.innerHTML = posts.map(p => `
+        <div class="col-md-6 col-lg-4 reveal in">
+          <div class="blog-card">
+            <div class="blog-cover ${p.cover}"># ${p.topic}</div>
+            <div class="blog-body">
+              <div class="blog-meta">${new Date(p.date).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})} · ${p.readTime} read</div>
+              <h3>${p.title}</h3>
+              <p>${p.excerpt}</p>
+            </div>
+          </div>
+        </div>`).join("") || `<p class="text-center" style="color:var(--text-faint)">No articles in this topic yet.</p>`;
+    }
+
+    filterBar.innerHTML = topics.map((t, i) => `
+      <button class="btn-outline-mint btn btn-sm filter-chip ${i === 0 ? 'active-chip' : ''}" data-topic="${t}"
+        style="${i === 0 ? 'border-color:var(--mint);color:var(--mint);' : ''}">${t}</button>
+    `).join("");
+
+    filterBar.querySelectorAll(".filter-chip").forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterBar.querySelectorAll(".filter-chip").forEach(b => { b.style.borderColor = ""; b.style.color = ""; });
+        btn.style.borderColor = "var(--mint)";
+        btn.style.color = "var(--mint)";
+        renderGrid(btn.dataset.topic);
+      });
+    });
+
+    renderGrid("All");
+  });
+</script>
+</body>
+</html>

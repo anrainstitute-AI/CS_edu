@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- ============================================================ -->
+<!-- HEAD: meta, fonts, Bootstrap, icons, and our own stylesheet   -->
+<!-- ============================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS.edu — Learn Computer Science the Right Way</title>
+<meta name="description" content="Master Data Structures, Algorithms, DBMS, OS, Networks, AI and Machine Learning with project-based CS courses.">
+
+<!-- Google Fonts: display + body + monospace (terminal accent) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<!-- Our design system -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- NAVIGATION BAR                                                -->
+<!-- ============================================================ -->
+<nav class="navbar navbar-expand-lg navbar-cs">
+  <div class="container">
+    <a class="navbar-brand-cs" href="#top"><span class="bracket">&lt;</span>CS.edu<span class="bracket">/&gt;</span></a>
+
+    <button class="navbar-toggler border-0 text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse">
+      <i class="bi bi-list fs-2" style="color:var(--text)"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navCollapse">
+      <ul class="navbar-nav mx-auto mt-3 mt-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#top">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#courses">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="#topics">Topics</a></li>
+        <li class="nav-item"><a class="nav-link" href="#dashboard">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+
+      <!-- Search + theme toggle -->
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+        <div class="search-box" style="width:220px;">
+          <i class="bi bi-search"></i>
+          <input type="text" id="searchInput" placeholder="Search courses, topics…" autocomplete="off">
+          <div id="searchResults"></div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+          <i class="bi bi-sun"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================ -->
+<!-- HERO SECTION                                                  -->
+<!-- ============================================================ -->
+<header class="hero" id="top">
+  <div class="container">
+    <div class="row align-items-center g-5">
+
+      <!-- Left: headline + CTAs + stats -->
+      <div class="col-lg-6">
+        <span class="hero-kicker">// learn computer science by building it</span>
+        <h1>Think like a <span class="accent">computer scientist</span>, not just a coder.</h1>
+        <p class="lead">From arrays to neural networks — project-based courses that teach the fundamentals behind every line of code you'll ever write.</p>
+
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#courses" class="btn-mint btn">Browse Courses <i class="bi bi-arrow-right ms-1"></i></a>
+          <a href="#topics" class="btn-outline-mint btn">Explore Topics</a>
+        </div>
+
+        <div class="hero-stats">
+          <div><div class="stat-num">120K+</div><div class="stat-label">learners</div></div>
+          <div><div class="stat-num">8</div><div class="stat-label">core topics</div></div>
+          <div><div class="stat-num">4.8/5</div><div class="stat-label">avg. rating</div></div>
+        </div>
+      </div>
+
+      <!-- Right: mock code editor window (hero visual signature) -->
+      <div class="col-lg-6">
+        <div class="editor-window">
+          <div class="editor-titlebar">
+            <span class="editor-dot" style="background:#fb7185"></span>
+            <span class="editor-dot" style="background:#fbbf24"></span>
+            <span class="editor-dot" style="background:#5eead4"></span>
+            <span class="tab"><i class="bi bi-file-earmark-code"></i> learn.py</span>
+          </div>
+          <div class="editor-body">
+            <div class="editor-line"><span class="line-no">1</span><span><span class="tok-kw">def</span> <span class="tok-fn">become_engineer</span>(you):</span></div>
+            <div class="editor-line"><span class="line-no">2</span><span>&nbsp;&nbsp;<span class="tok-var">skills</span> = []</span></div>
+            <div class="editor-line"><span class="line-no">3</span><span>&nbsp;&nbsp;<span class="tok-kw">for</span> topic <span class="tok-kw">in</span> [<span class="tok-str">"DSA"</span>, <span class="tok-str">"OS"</span>, <span class="tok-str">"DBMS"</span>,</span></div>
+            <div class="editor-line"><span class="line-no">4</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-str">"Networks"</span>, <span class="tok-str">"AI"</span>, <span class="tok-str">"ML"</span>]:</span></div>
+            <div class="editor-line"><span class="line-no">5</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-var">skills</span>.append(<span class="tok-fn">master</span>(topic))</span></div>
+            <div class="editor-line"><span class="line-no">6</span><span></span></div>
+            <div class="editor-line"><span class="line-no">7</span><span>&nbsp;&nbsp;<span class="tok-cm"># consistency compounds</span></span></div>
+            <div class="editor-line"><span class="line-no">8</span><span>&nbsp;&nbsp;<span class="tok-kw">return</span> you.<span class="tok-fn">ship</span>(skills)<span class="cursor-blink"></span></span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- FEATURED COURSES SECTION                                      -->
+<!-- ============================================================ -->
+<section class="section" id="courses">
+  <div class="container">
+    <span class="eyebrow">ls ./featured-courses</span>
+    <h2 class="section-title">Featured courses</h2>
+    <p class="section-sub">Hand-picked, project-based courses covering the eight pillars of a real CS education.</p>
+
+    <!-- Cards injected by script.js from data.js -->
+    <div class="row g-4" id="courseGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- TOPICS SECTION (the 8 required subjects)                      -->
+<!-- ============================================================ -->
+<section class="section" id="topics" style="background: var(--bg-elevated);">
+  <div class="container">
+    <span class="eyebrow">cat ./topics</span>
+    <h2 class="section-title">Browse by topic</h2>
+    <p class="section-sub">Every course rolls up into one of these eight core CS subjects — pick where you want to start.</p>
+
+    <div class="row g-4" id="topicGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- STUDENT DASHBOARD SECTION                                     -->
+<!-- ============================================================ -->
+<section class="section" id="dashboard">
+  <div class="container">
+    <span class="eyebrow">whoami --progress</span>
+    <h2 class="section-title">Your learning dashboard</h2>
+    <p class="section-sub">A snapshot of a logged-in student's progress — enrollments, hours, streaks and per-course completion.</p>
+
+    <!-- Top-level stats -->
+    <div class="row g-4 mb-4" id="dashStats"></div>
+
+    <div class="row g-4">
+      <!-- Progress bars -->
+      <div class="col-lg-7">
+        <div class="dash-card">
+          <h5 class="mb-4">Course progress</h5>
+          <div id="dashProgress"></div>
+        </div>
+      </div>
+      <!-- Completion status list -->
+      <div class="col-lg-5">
+        <div class="dash-card">
+          <h5 class="mb-3">Completion status</h5>
+          <div id="dashStatus"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BLOG PREVIEW SECTION (links out to blog.html)                 -->
+<!-- ============================================================ -->
+<section class="section" id="blog" style="background: var(--bg-elevated);">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-2">
+      <div>
+        <span class="eyebrow">tail -f ./blog</span>
+        <h2 class="section-title mb-0">From the blog</h2>
+      </div>
+      <a href="blog.html" class="btn-outline-mint btn">View all posts <i class="bi bi-arrow-right ms-1"></i></a>
+    </div>
+    <p class="section-sub">Short, focused write-ups that build intuition for the ideas behind the courses.</p>
+
+    <!-- data-limit caps how many posts render here; full list lives on blog.html -->
+    <div class="row g-4" id="blogGrid" data-limit="3"></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FAQ SECTION                                                   -->
+<!-- ============================================================ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <span class="eyebrow">man faq</span>
+        <h2 class="section-title text-center">Frequently asked questions</h2>
+        <p class="section-sub mx-auto text-center">Everything you need to know before you start.</p>
+
+        <div id="faqList" class="mt-4"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- CONTACT SECTION                                               -->
+<!-- ============================================================ -->
+<section class="section" id="contact" style="background: var(--bg-elevated);">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5">
+        <span class="eyebrow">touch contact.txt</span>
+        <h2 class="section-title">Get in touch</h2>
+        <p class="section-sub mb-4">Questions about a course, a bug on the site, or a partnership idea — send it over and we'll reply within two business days.</p>
+
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <i class="bi bi-envelope text-mint" style="color:var(--mint)"></i>
+          <span class="font-mono" style="font-size:.9rem">hello@cs-edu.example</span>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <i class="bi bi-geo-alt" style="color:var(--mint)"></i>
+          <span class="font-mono" style="font-size:.9rem">Remote-first, worldwide</span>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="contact-card">
+          <div id="formSuccess" class="alert alert-success" role="alert" style="background:var(--mint-bg); color:var(--mint); border:1px solid var(--mint);">
+            <i class="bi bi-check-circle me-1"></i> Message sent — we'll get back to you soon.
+          </div>
+
+          <form id="contactForm" class="row g-3" novalidate>
+            <div class="col-md-6">
+              <label class="form-label-cs" for="cName">Name</label>
+              <input type="text" class="form-control-cs" id="cName" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label-cs" for="cEmail">Email</label>
+              <input type="email" class="form-control-cs" id="cEmail" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label-cs" for="cSubject">Subject</label>
+              <input type="text" class="form-control-cs" id="cSubject" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label-cs" for="cMessage">Message</label>
+              <textarea class="form-control-cs" id="cMessage" rows="4" required></textarea>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn-mint btn w-100">Send message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+<footer class="footer-cs">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <a class="navbar-brand-cs mb-3 d-inline-flex" href="#top"><span class="bracket">&lt;</span>CS.edu<span class="bracket">/&gt;</span></a>
+        <p style="font-size:.88rem;">Computer science education, taught from first principles — for self-taught developers and CS students alike.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Topics</h6>
+        <a href="#topics">Data Structures</a>
+        <a href="#topics">Algorithms</a>
+        <a href="#topics">DBMS</a>
+        <a href="#topics">Operating Systems</a>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>More</h6>
+        <a href="#topics">Networks</a>
+        <a href="#topics">AI</a>
+        <a href="#topics">Machine Learning</a>
+        <a href="#topics">AI Tools</a>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Site</h6>
+        <a href="#courses">Courses</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="blog.html">Blog</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Company</h6>
+        <a href="#contact">Contact</a>
+        <a href="#top">About</a>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex justify-content-between flex-wrap gap-2">
+      <span>© 2026 CS.edu — built for learners.</span>
+      <span>v1.0.0 // status: <span style="color:var(--mint)">online</span></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
