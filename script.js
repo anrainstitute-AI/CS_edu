@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("cs-theme") || "dark";
   root.setAttribute("data-theme", savedTheme);
   updateThemeIcon(savedTheme);
+  updateLogo(savedTheme);
 
   if (themeBtn) {
     themeBtn.addEventListener("click", () => {
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       root.setAttribute("data-theme", next);
       localStorage.setItem("cs-theme", next);
       updateThemeIcon(next);
+      updateLogo(next);
     });
   }
 
@@ -287,3 +289,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+function updateLogo(theme) {
+
+  const logo = document.getElementById("siteLogo");
+
+  if (!logo) return;
+
+  if (theme === "dark") {
+      logo.src = "images/Anra white logo.png";
+  } else {
+      logo.src = "images/ANRA Institue.png";
+  }
+}

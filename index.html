@@ -6,9 +6,9 @@
 <!-- ============================================================ -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CS.edu — Learn Computer Science the Right Way</title>
-<meta name="description" content="Master Data Structures, Algorithms, DBMS, OS, Networks, AI and Machine Learning with project-based CS courses.">
-
+<title>ANRA Institute | AI, Data Science, Python, SQL Training & Internships</title>
+<meta name="description"
+content="Learn AI, Data Science, Python, SQL, Power BI and Machine Learning with internships and placement assistance at ANRA Institute.">
 <!-- Google Fonts: display + body + monospace (terminal accent) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -27,7 +27,12 @@
 <!-- ============================================================ -->
 <nav class="navbar navbar-expand-lg navbar-cs">
   <div class="container">
-    <a class="navbar-brand-cs" href="#top"><span class="bracket">&lt;</span>CS.edu<span class="bracket">/&gt;</span></a>
+      <a href="index.html" class="logo">
+        <img
+            id="siteLogo"
+            src="images/Anra white logo.png"
+            alt="ANRA Institute Logo">
+      </a>
 
     <button class="navbar-toggler border-0 text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse">
       <i class="bi bi-list fs-2" style="color:var(--text)"></i>
@@ -38,7 +43,6 @@
         <li class="nav-item"><a class="nav-link" href="#top">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="#courses">Courses</a></li>
         <li class="nav-item"><a class="nav-link" href="#topics">Topics</a></li>
-        <li class="nav-item"><a class="nav-link" href="#dashboard">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
         <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
@@ -68,7 +72,7 @@
 
       <!-- Left: headline + CTAs + stats -->
       <div class="col-lg-6">
-        <span class="hero-kicker">// learn computer science by building it</span>
+        <!-- <span class="hero-kicker">// learn computer science by building it</span> -->
         <h1>Think like a <span class="accent">computer scientist</span>, not just a coder.</h1>
         <p class="lead">From arrays to neural networks — project-based courses that teach the fundamentals behind every line of code you'll ever write.</p>
 
@@ -137,36 +141,6 @@
   </div>
 </section>
 
-<!-- ============================================================ -->
-<!-- STUDENT DASHBOARD SECTION                                     -->
-<!-- ============================================================ -->
-<section class="section" id="dashboard">
-  <div class="container">
-    <span class="eyebrow">whoami --progress</span>
-    <h2 class="section-title">Your learning dashboard</h2>
-    <p class="section-sub">A snapshot of a logged-in student's progress — enrollments, hours, streaks and per-course completion.</p>
-
-    <!-- Top-level stats -->
-    <div class="row g-4 mb-4" id="dashStats"></div>
-
-    <div class="row g-4">
-      <!-- Progress bars -->
-      <div class="col-lg-7">
-        <div class="dash-card">
-          <h5 class="mb-4">Course progress</h5>
-          <div id="dashProgress"></div>
-        </div>
-      </div>
-      <!-- Completion status list -->
-      <div class="col-lg-5">
-        <div class="dash-card">
-          <h5 class="mb-3">Completion status</h5>
-          <div id="dashStatus"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============================================================ -->
 <!-- BLOG PREVIEW SECTION (links out to blog.html)                 -->
