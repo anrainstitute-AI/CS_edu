@@ -47,13 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="col-md-6 col-lg-3 reveal">
         <div class="course-card" data-course="${c.id}">
           <div class="card-top">
-            <span class="badge-ext badge-${c.color}">${c.ext}</span>
-            <span class="badge-ext badge-${c.color}">${c.level}</span>
+            <!--<span class="badge-ext badge-${c.color}">${c.ext}</span>-->
+            <div class="topic-icon badge-${c.color}"><i class="bi bi-${c.icon}"></i></div>
+            <!--<span class="badge-ext badge-${c.color}">${c.level}</span> -->
           </div>
           <h3>${c.title}</h3>
           <p>${c.blurb}</p>
           <div class="course-meta">
-            <span><i class="bi bi-clock"></i> ${c.duration}</span>
+            <!-- <span><i class="bi bi-clock"></i> ${c.duration}</span> -->
             <span class="stars"><i class="bi bi-star-fill"></i> ${c.rating}</span>
           </div>
         </div>
@@ -158,6 +159,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const d = new Date(iso);
     return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
   }
+
+  /* ----------------------------------------------------------------- */
+  /* 7. Testimonial                                             */
+  /* ----------------------------------------------------------------- */
+  const testimonialTrack = document.getElementById("testimonialTrack");
+  if(testimonialTrack){
+    const cards =
+    [...TESTIMONIALS, ...TESTIMONIALS]
+    .map(t => `
+        <div class="testimonial-card">
+            <img src="${t.image}" class="testimonial-avatar">
+            <div class="testimonial-stars"> ★★★★★</div>
+            <p>${t.review}</p>
+            <h5>${t.name}</h5>
+            <span>${t.role}</span>
+        </div>
+    `).join("");
+    testimonialTrack.innerHTML = cards;
+}
 
   /* ----------------------------------------------------------------- */
   /* 7. STUDENT DASHBOARD                                              */

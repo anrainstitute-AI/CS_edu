@@ -7,78 +7,15 @@
 /* ---- Featured / catalogue courses -------------------------------------- */
 const COURSES = [
   {
-    id: "dsa-core",
-    title: "Data Structures Essentials",
-    ext: ".cpp",
-    topic: "Data Structures",
-    level: "Beginner",
-    duration: "6h 20m",
-    lessons: 24,
-    rating: 4.8,
-    students: 18450,
-    blurb: "Arrays, linked lists, stacks, queues, trees and graphs — built from scratch, not just imported.",
-    color: "mint"
-  },
-  {
-    id: "algo-master",
-    title: "Algorithms & Complexity",
-    ext: ".py",
-    topic: "Algorithms",
-    level: "Intermediate",
-    duration: "8h 05m",
-    lessons: 31,
-    rating: 4.9,
-    students: 22310,
-    blurb: "Sorting, searching, greedy, divide & conquer, dynamic programming, and how to reason about Big-O.",
-    color: "amber"
-  },
-  {
-    id: "dbms-fund",
-    title: "Database Management Systems",
-    ext: ".sql",
-    topic: "DBMS",
-    level: "Beginner",
-    duration: "5h 40m",
-    lessons: 19,
-    rating: 4.6,
-    students: 14020,
-    blurb: "Relational modelling, normalization, transactions, indexing, and writing real SQL queries.",
-    color: "violet"
-  },
-  {
-    id: "os-internals",
-    title: "Operating Systems Internals",
-    ext: ".c",
-    topic: "Operating System",
-    level: "Intermediate",
-    duration: "7h 15m",
-    lessons: 22,
-    rating: 4.7,
-    students: 11870,
-    blurb: "Processes, threads, scheduling, memory management, deadlocks — how your OS really works.",
-    color: "mint"
-  },
-  {
-    id: "net-basics",
-    title: "Computer Networks 101",
-    ext: ".net",
-    topic: "Computer Networks",
-    level: "Beginner",
-    duration: "6h 00m",
-    lessons: 20,
-    rating: 4.5,
-    students: 9650,
-    blurb: "OSI & TCP/IP models, routing, sockets, HTTP/DNS — the plumbing of the internet, demystified.",
-    color: "amber"
-  },
-  {
     id: "ai-foundations",
     title: "Artificial Intelligence Foundations",
+    icon: "robot",
     ext: ".ai",
     topic: "Artificial Intelligence",
-    level: "Intermediate",
-    duration: "9h 30m",
-    lessons: 28,
+    //level: "Intermediate",
+    // duration: "9h 30m",
+    // lessons: 28,
+    
     rating: 4.8,
     students: 16940,
     blurb: "Search, knowledge representation, reasoning under uncertainty, and intelligent agents.",
@@ -87,6 +24,7 @@ const COURSES = [
   {
     id: "ml-practical",
     title: "Machine Learning in Practice",
+    icon: "graph-up",
     ext: ".ipynb",
     topic: "Machine Learning",
     level: "Advanced",
@@ -101,6 +39,7 @@ const COURSES = [
     id: "ai-tools",
     title: "Modern AI Tools & Copilots",
     ext: ".json",
+    icon: "tools",
     topic: "AI Tools",
     level: "Beginner",
     duration: "4h 10m",
@@ -108,6 +47,76 @@ const COURSES = [
     rating: 4.7,
     students: 13280,
     blurb: "Prompting, LLM APIs, vector search, and using AI copilots to ship code faster.",
+    color: "amber"
+  },
+  {
+    id: "dsa-core",
+    title: "Data Structures Essentials",
+    ext: ".cpp",
+    icon: "diagram-3",
+    topic: "Data Structures",
+    level: "Beginner",
+    duration: "6h 20m",
+    lessons: 24,
+    rating: 4.8,
+    students: 18450,
+    blurb: "Arrays, linked lists, stacks, queues, trees and graphs — built from scratch, not just imported.",
+    color: "mint"
+  },
+  {
+    id: "algo-master",
+    title: "Algorithms & Complexity",
+    ext: ".py",
+    icon: "cpu",
+    topic: "Algorithms",
+    level: "Intermediate",
+    duration: "8h 05m",
+    lessons: 31,
+    rating: 4.9,
+    students: 22310,
+    blurb: "Sorting, searching, greedy, divide & conquer, dynamic programming, and how to reason about Big-O.",
+    color: "amber"
+  },
+  {
+    id: "dbms-fund",
+    title: "Database Management Systems",
+    ext: ".sql",
+    icon: "database",
+    topic: "DBMS",
+    level: "Beginner",
+    duration: "5h 40m",
+    lessons: 19,
+    rating: 4.6,
+    students: 14020,
+    blurb: "Relational modelling, normalization, transactions, indexing, and writing real SQL queries.",
+    color: "violet"
+  },
+  {
+    id: "os-internals",
+    title: "Operating Systems Internals",
+    ext: ".c",
+    icon: "terminal",
+    topic: "Operating System",
+    level: "Intermediate",
+    duration: "7h 15m",
+    lessons: 22,
+    rating: 4.7,
+    students: 11870,
+    blurb: "Processes, threads, scheduling, memory management, deadlocks — how your OS really works.",
+    color: "mint"
+  },
+  {
+    id: "net-basics",
+    title: "Computer Networks 101",
+    ext: ".net",
+    icon: "hdd-network",
+    topic: "Computer Networks",
+    level: "Beginner",
+    duration: "6h 00m",
+    lessons: 20,
+    rating: 4.5,
+    students: 9650,
+    blurb: "OSI & TCP/IP models, routing, sockets, HTTP/DNS — the plumbing of the internet, demystified.",
     color: "amber"
   }
 ];
@@ -204,4 +213,51 @@ const BLOG_POSTS = [
     excerpt: "Treat prompts like code: version them, test them, and review them. Here's a lightweight workflow that scales.",
     cover: "mint"
   }
+];
+
+//----- Testimonials ------
+const TESTIMONIALS = [
+
+{
+  name:"Rahul Sharma",
+  role:"SQL Developer",
+  image:"images/student1.jpg",
+  review:"The SQL training helped me crack interviews and gain confidence."
+},
+
+{
+  name:"Priya Gupta",
+  role:"Data Analyst",
+  image:"images/student2.jpg",
+  review:"The AI and Python program gave me real-world project experience."
+},
+
+{
+  name:"Aman Verma",
+  role:"Software Engineer",
+  image:"images/student3.jpg",
+  review:"Excellent faculty, internship support and placement guidance."
+},
+
+{
+  name:"Sneha Patel",
+  role:"Power BI Analyst",
+  image:"images/student4.jpg",
+  review:"Power BI training was practical and easy to understand."
+},
+
+{
+  name:"Rohit Kumar",
+  role:"Python Developer",
+  image:"images/student5.jpg",
+  review:"The projects and mentorship helped me become job-ready."
+},
+
+{
+  name:"Anjali Singh",
+  role:"Data Scientist",
+  image:"images/student6.jpg",
+  review:"Best learning experience for AI and Data Science."
+}
+
 ];
