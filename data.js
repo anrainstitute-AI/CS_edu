@@ -219,45 +219,51 @@ const BLOG_POSTS = [
 const TESTIMONIALS = [
 
 {
-  name:"Rahul Sharma",
-  role:"SQL Developer",
-  image:"images/student1.jpg",
-  review:"The SQL training helped me crack interviews and gain confidence."
+   name: "Pushpa Rajput",
+   role: "AI, Machine Learning, Data Analyst",
+   image: "images/students/pushpa-rajput.jpg",
+   rating: 5,
+   review: "Ma'am teaches exceptionally well and focuses on making concepts truly understandable rather than simply completing the syllabus. She is supportive, kind, and dedicated to student success. The institute offers quality education, affordable courses, and an excellent learning experience. I highly recommend ANRA Institute."
 },
 
 {
-  name:"Priya Gupta",
-  role:"Data Analyst",
-  image:"images/student2.jpg",
-  review:"The AI and Python program gave me real-world project experience."
+    name: "Bhumika Trivedi",
+    role: "Advance Excel",
+    image: "images/students/bhumika-trivedi.jpg",
+    rating: 5,
+    review: "ANRA Institute provides an exceptional learning experience with a strong focus on practical knowledge. The curriculum is modern, well-structured, and delivered effectively. The supportive guidance, healthy learning environment, and excellent facilities make it a great place to learn and grow."
 },
 
 {
-  name:"Aman Verma",
-  role:"Software Engineer",
-  image:"images/student3.jpg",
-  review:"Excellent faculty, internship support and placement guidance."
+    name: "Rudra",
+    role: "AI, Data Science, SQL",
+    image: "images/students/rudra.jpg",
+    rating: 5,
+    review: "ANRA Institute provides excellent guidance with a well-structured curriculum and highly qualified faculty. The teachers explain concepts clearly, adapt to each student's learning pace, and create an engaging learning experience."
 },
 
 {
-  name:"Sneha Patel",
-  role:"Power BI Analyst",
-  image:"images/student4.jpg",
-  review:"Power BI training was practical and easy to understand."
+    name: "Shreya",
+    role: "Python, Machine Learning & SQL Student",
+    image: "images/students/shreya.jpg",
+    rating: 5,
+    review: "Mansi Ma'am is an outstanding instructor who makes complex concepts easy to understand. Her engaging teaching style, patience, and dedication helped me grow in Python, Machine Learning, SQL, and DBMS. She genuinely cares about her students' success and goes above and beyond to help them achieve their goals."
 },
 
 {
-  name:"Rohit Kumar",
-  role:"Python Developer",
-  image:"images/student5.jpg",
-  review:"The projects and mentorship helped me become job-ready."
+    name: "Virendra",
+    role: "Full Stack Developer",
+    image: "images/students/virendra.jpg",
+    rating: 4,
+    review: "I've been learning at ANRA Institute for the past two months, and it has been a great experience. The institute provides an excellent environment for learning programming with clear guidance and practical understanding."
 },
 
 {
-  name:"Anjali Singh",
-  role:"Data Scientist",
-  image:"images/student6.jpg",
-  review:"Best learning experience for AI and Data Science."
+    name: "Tanzy D",
+    role: "Parent",
+    image: "images/students/tanzy-d.jpg",
+    rating: 5,
+    review: "My daughter is a student at ANRA Institute and has become much more confident in computer studies. Her academic performance improved significantly, scoring above 95%. Thank you to Mansi Ma'am for the excellent guidance and support."
 }
 
 ];

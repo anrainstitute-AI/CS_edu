@@ -167,15 +167,20 @@ document.addEventListener("DOMContentLoaded", () => {
   if(testimonialTrack){
     const cards =
     [...TESTIMONIALS, ...TESTIMONIALS]
-    .map(t => `
+    .map(t => 
+      {
+        let stars = "";
+        for(let i = 0; i < t.rating; i++){
+          stars += "★";}
+        return `
         <div class="testimonial-card">
             <img src="${t.image}" class="testimonial-avatar">
-            <div class="testimonial-stars"> ★★★★★</div>
+            <div class="testimonial-stars"> ${stars}</div>
             <p>${t.review}</p>
             <h5>${t.name}</h5>
             <span>${t.role}</span>
         </div>
-    `).join("");
+    `}).join("");
     testimonialTrack.innerHTML = cards;
 }
 
