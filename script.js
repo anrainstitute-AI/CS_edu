@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ----------------------------------------------------------------- */
   /* 1. THEME TOGGLE (dark / light, persisted in localStorage)         */
   /* ----------------------------------------------------------------- */
+  
   const root = document.documentElement;
   const themeBtn = document.getElementById("themeToggle");
   const savedTheme = localStorage.getItem("cs-theme") || "dark";
@@ -288,7 +289,10 @@ document.addEventListener("DOMContentLoaded", () => {
   /* 10. NAVBAR ACTIVE LINK ON SCROLL (homepage only)                  */
   /* ----------------------------------------------------------------- */
   const navLinks = document.querySelectorAll(".navbar-cs .nav-link[href^='#']");
-  const sections = [...navLinks].map(l => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+
+  const sections = [...navLinks]
+  .map(link => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
 
   if (sections.length) {
     window.addEventListener("scroll", () => {
@@ -305,24 +309,43 @@ document.addEventListener("DOMContentLoaded", () => {
   /* 11. COLLAPSE MOBILE NAV ON LINK CLICK                             */
   /* ----------------------------------------------------------------- */
   document.querySelectorAll(".navbar-cs .nav-link").forEach(link => {
-    link.addEventListener("click", () => {
-      const navCollapse = document.getElementById("navCollapse");
-      if (navCollapse && navCollapse.classList.contains("show")) {
-        bootstrap.Collapse.getOrCreateInstance(navCollapse).hide();
-      }
-    });
-  });
+
+      link.addEventListener("click", () => {
+
+          if (window.innerWidth < 992) {
+
+              const navCollapse =
+              document.getElementById("navCollapse");
+
+              bootstrap.Collapse
+                  .getOrCreateInstance(navCollapse)
+                  .hide();
+          }
+
+      });
+
+});
 
 });
 function updateLogo(theme) {
 
-  const logo = document.getElementById("siteLogo");
+    const navbarLogo =
+    document.getElementById("navbarLogo");
 
-  if (!logo) return;
+    const footerLogo =
+    document.getElementById("footerLogo");
 
-  if (theme === "dark") {
-      logo.src = "images/Anra white logo.png";
-  } else {
-      logo.src = "images/ANRA Institue.png";
-  }
+    const logoSrc =
+      theme === "dark"
+      ? "images/Anra white logo.png"
+      : "images/ANRA Institue.png";
+
+    if(navbarLogo){
+        navbarLogo.src = logoSrc;
+    }
+
+    if(footerLogo){
+        footerLogo.src = logoSrc;
+    }
 }
+
