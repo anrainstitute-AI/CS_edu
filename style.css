@@ -167,13 +167,7 @@ a{ color: inherit; text-decoration: none; }
     transition:all .3s ease;
 }
 
-@media(max-width:768px){
 
-    .logo img{
-        height:50px;
-    }
-
-}
 /* ---------------------------------------------------------------------- */
 /* 3. NAVBAR                                                              */
 /* ---------------------------------------------------------------------- */
@@ -703,14 +697,14 @@ a{ color: inherit; text-decoration: none; }
     font-size:1.2rem;
 }
 /* Mobile */
-@media(max-width:768px){
+/* @media(max-width:768px){
     .testimonial-card{
         width:280px;
     }
     .testimonial-track{
         animation-duration:25s;
     }
-}
+} */
 /* ---------------------------------------------------------------------- */
 /* 11. FOOTER                                                             */
 /* ---------------------------------------------------------------------- */
@@ -745,7 +739,7 @@ a{ color: inherit; text-decoration: none; }
 /* ---------------------------------------------------------------------- */
 /* 13. RESPONSIVE TWEAKS                                                  */
 /* ---------------------------------------------------------------------- */
-@media (max-width: 991px){
+@media (max-width: 768px){
   .hero-stats{ gap: 1.4rem; flex-wrap: wrap; }
   .editor-window{ margin-top: 2.5rem; }
   .navbar-collapse{
@@ -758,20 +752,40 @@ a{ color: inherit; text-decoration: none; }
   .navbar-collapse:not(.show){
       display: none !important;
   }
-}
-@media (max-width: 576px){
-  .contact-card{ padding: 1.4rem; }
-  .hero{ padding: 3rem 0 2rem; }
-}
-
-@media(max-width:768px){
-
+   .testimonial-card{
+        width:280px;
+    }
+    .testimonial-track{
+        animation-duration:25s;
+    }
     .hero{
 
         min-height:80vh;
 
         background-position:70% center;
     }
+     .logo img{
+        height:50px;
+    }
+    .contact-card{ padding: 1.4rem; }
+    .hero{ padding: 3rem 0 2rem; }
+}
+@media (max-width: 575.98px) {
+
+  html,
+  body{
+    overflow-x:hidden;
+  }
+
+  .hero{
+    overflow:hidden;
+  }
+
+  .hero .container{
+    padding-left:16px;
+    padding-right:16px;
+  }
 
 }
+
 
