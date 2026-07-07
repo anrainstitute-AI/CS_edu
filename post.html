@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title id="pageTitle">ANRA Institute Blog</title>
+<meta name="description" id="metaDescription" content="ANRA Institute Blog">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<style>
+
+:root{
+    --primary:#0f172a;
+    --secondary:#1e293b;
+    --accent:#06b6d4;
+    --text:#334155;
+    --light:#f8fafc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#f1f5f9;
+    color:var(--text);
+}
+
+/* Progress Bar */
+
+#progressBar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:0;
+    height:4px;
+    background:var(--accent);
+    z-index:9999;
+}
+
+/* Hero */
+
+.post-hero{
+    background:
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b
+    );
+
+    color:white;
+    padding:100px 0 70px;
+}
+
+.post-category{
+    display:inline-block;
+    background:var(--accent);
+    padding:8px 18px;
+    border-radius:30px;
+    margin-bottom:20px;
+    font-size:.9rem;
+}
+
+.post-hero h1{
+    font-size:
+    clamp(
+        2rem,
+        5vw,
+        4rem
+    );
+
+    font-weight:800;
+    max-width:900px;
+}
+
+.post-meta{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-top:25px;
+}
+
+.author-avatar{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+/* Main Layout */
+
+.post-section{
+    padding:70px 0;
+}
+
+.sidebar-card{
+    position:sticky;
+    top:100px;
+
+    background:white;
+    border-radius:20px;
+    padding:20px;
+
+    box-shadow:
+    0 5px 25px
+    rgba(0,0,0,.08);
+}
+
+.sidebar-card h5{
+    margin-bottom:15px;
+}
+
+.sidebar-card ul{
+    list-style:none;
+    padding-left:0;
+}
+
+.sidebar-card li{
+    margin-bottom:10px;
+}
+
+.sidebar-card a{
+    text-decoration:none;
+    color:#475569;
+}
+
+.sidebar-card a:hover{
+    color:var(--accent);
+}
+
+.share-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.share-buttons a{
+    width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#e2e8f0;
+    border-radius:50%;
+
+    text-decoration:none;
+    color:#0f172a;
+}
+
+.blog-content{
+
+    background:white;
+
+    padding:50px;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.08);
+}
+
+.blog-content img{
+    max-width:100%;
+    border-radius:15px;
+}
+
+.blog-content h2{
+    margin-top:45px;
+    margin-bottom:20px;
+    font-weight:700;
+}
+
+.blog-content p{
+    line-height:1.9;
+    margin-bottom:18px;
+}
+
+.blog-content pre{
+    background:#0f172a;
+    color:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    overflow:auto;
+}
+
+.blog-content code{
+    font-family:Consolas;
+}
+
+.blog-content table{
+    width:100%;
+    margin:25px 0;
+}
+
+.blog-content th,
+.blog-content td{
+    border:1px solid #e2e8f0;
+    padding:12px;
+}
+
+/* Related Posts */
+
+.related-section{
+    padding:80px 0;
+}
+
+.related-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 5px 20px
+    rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.related-card:hover{
+    transform:translateY(-5px);
+}
+
+.related-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.related-body{
+    padding:20px;
+}
+
+.related-body a{
+    text-decoration:none;
+}
+
+/* Footer */
+
+footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+@media(max-width:992px){
+
+    .sidebar-card{
+        position:relative;
+        top:auto;
+        margin-bottom:25px;
+    }
+
+    .blog-content{
+        padding:25px;
+    }
+}
+
+/* -------------------------------------------------------
+   TOC STYLING
+------------------------------------------------------- */
+
+#toc{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+#toc li{
+    margin-bottom:6px;
+}
+
+#toc a{
+
+    display:block;
+
+    padding:10px 12px;
+
+    color:#64748b;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    transition:all .3s ease;
+
+    font-size:.95rem;
+}
+
+#toc a:hover{
+
+    background:#e2e8f0;
+
+    color:#0f172a;
+
+}
+
+#toc a.active{
+
+    background:#06b6d4;
+
+    color:white;
+
+    font-weight:600;
+
+    transform:translateX(5px);
+
+}
+
+/* Sticky TOC */
+
+.sidebar-card{
+
+    max-height:80vh;
+
+    overflow-y:auto;
+
+}
+
+/* Smooth Scroll */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+/* TOC Scrollbar */
+
+.sidebar-card::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.sidebar-card::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:10px;
+
+}
+
+
+</style>
+
+</head>
+<body>
+
+<div id="progressBar"></div>
+
+<!-- HERO -->
+
+<section class="post-hero">
+
+    <div class="container">
+
+        <span
+        class="post-category"
+        id="postCategory">
+            SQL
+        </span>
+
+        <h1 id="postTitle">
+            Loading...
+        </h1>
+
+        <div class="post-meta">
+
+            <img
+            src="images/mansi-garg.jpg"
+            class="author-avatar"
+            alt="Author">
+
+            <div>
+
+                <strong>
+                    Mansi Garg
+                </strong>
+
+                <div id="postMeta">
+                    Loading...
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTENT -->
+
+<section class="post-section">
+
+<div class="container">
+
+<div class="row g-4">
+
+<!-- TOC -->
+
+<div class="col-lg-3">
+
+<div class="sidebar-card">
+
+<h5>
+Contents
+</h5>
+
+<ul id="toc"></ul>
+
+</div>
+
+</div>
+
+<!-- BLOG -->
+
+<div class="col-lg-6">
+
+<div
+id="blogPost"
+class="blog-content">
+
+Loading Article...
+
+</div>
+
+</div>
+
+<!-- SHARE -->
+
+<div class="col-lg-3">
+
+<div class="sidebar-card">
+
+<h5>
+Share Article
+</h5>
+
+<div class="share-buttons">
+
+<a href="#">
+<i class="bi bi-linkedin"></i>
+</a>
+
+<a href="#">
+<i class="bi bi-facebook"></i>
+</a>
+
+<a href="#">
+<i class="bi bi-whatsapp"></i>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- RELATED -->
+
+<section class="related-section">
+
+<div class="container">
+
+<h2 class="mb-4">
+Related Articles
+</h2>
+
+<div
+class="row g-4"
+id="relatedPosts">
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+© 2026 ANRA Institute.
+All Rights Reserved.
+</p>
+
+</footer>
+
+<!-- BLOG DATA -->
+
+<script src="data_blog.js"></script>
+
+<script>
+
+/* Get ID */
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const id =
+parseInt(
+params.get("id")
+);
+
+/* Find Post */
+
+const post =
+BLOG_POSTS.find(
+p => p.id === id
+);
+
+/* Render */
+
+if(post){
+
+document.title =
+post.title +
+" | ANRA Institute";
+
+document
+.getElementById("postTitle")
+.innerText =
+post.title;
+
+document
+.getElementById("postCategory")
+.innerText =
+post.topic;
+
+document
+.getElementById("postMeta")
+.innerText =
+`${post.date} • ${post.readTime}`;
+
+document
+.getElementById("blogPost")
+.innerHTML =
+post.content;
+
+/* SEO */
+
+document
+.getElementById(
+"metaDescription"
+)
+.setAttribute(
+"content",
+post.excerpt
+);
+
+/* TOC */
+/* -------------------------------------------------------
+   TABLE OF CONTENTS + ACTIVE SECTION HIGHLIGHT
+------------------------------------------------------- */
+
+setTimeout(() => {
+
+    const headings =
+        document.querySelectorAll(
+            "#blogPost h2"
+        );
+
+    const toc =
+        document.getElementById(
+            "toc"
+        );
+
+    toc.innerHTML = "";
+
+    headings.forEach(
+        (heading, index) => {
+
+        const headingId =
+            "heading-" + index;
+
+        heading.id =
+            headingId;
+
+        toc.innerHTML += `
+            <li>
+                <a
+                    href="#${headingId}"
+                    class="toc-link">
+
+                    ${heading.innerText}
+
+                </a>
+            </li>
+        `;
+
+    });
+
+    const tocLinks =
+        document.querySelectorAll(
+            ".toc-link"
+        );
+
+    function highlightTOC() {
+
+        let currentSection = "";
+
+        headings.forEach(section => {
+
+            const sectionTop =
+                section.offsetTop - 180;
+
+            const sectionHeight =
+                section.offsetHeight;
+
+            if (
+                window.scrollY >=
+                sectionTop
+            ) {
+
+                currentSection =
+                    section.id;
+
+            }
+
+        });
+
+        tocLinks.forEach(link => {
+
+            link.classList.remove(
+                "active"
+            );
+
+            if (
+                link.getAttribute(
+                    "href"
+                ) ===
+                "#" + currentSection
+            ) {
+
+                link.classList.add(
+                    "active"
+                );
+
+                link.scrollIntoView({
+                    block:"nearest",
+                    behavior:"smooth"
+                });
+
+            }
+
+        });
+
+    }
+
+    highlightTOC();
+
+    window.addEventListener(
+        "scroll",
+        highlightTOC
+    );
+
+}, 100);
+
+
+/* Related */
+
+const related =
+BLOG_POSTS
+.filter(
+p =>
+p.topic === post.topic
+&&
+p.id !== post.id
+)
+.slice(0,3);
+
+document
+.getElementById(
+"relatedPosts"
+)
+.innerHTML =
+related.map(p => `
+
+<div class="col-md-4">
+
+<div class="related-card">
+
+<img
+src="${p.image}"
+alt="${p.title}">
+
+<div class="related-body">
+
+<h5>
+${p.title}
+</h5>
+
+<p>
+${p.excerpt}
+</p>
+
+<a
+href="post.html?id=${p.id}">
+Read More →
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+`).join("");
+
+}else{
+
+document
+.getElementById(
+"blogPost"
+)
+.innerHTML = `
+<h2>
+Article Not Found
+</h2>
+<p>
+The requested article does not exist.
+</p>
+`;
+
+}
+
+/* Progress Bar */
+
+window.addEventListener(
+"scroll",
+()=>{
+
+const winScroll =
+document.body.scrollTop
+||
+document.documentElement.scrollTop;
+
+const height =
+document.documentElement.scrollHeight
+-
+document.documentElement.clientHeight;
+
+const scrolled =
+(winScroll / height)
+* 100;
+
+document
+.getElementById(
+"progressBar"
+)
+.style.width =
+scrolled + "%";
+
+});
+
+</script>
+
+</body>
+</html>
+```

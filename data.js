@@ -157,63 +157,7 @@ const FAQS = [
   }
 ];
 
-/* ---- Blog posts ----------------------------------------------------------- */
-const BLOG_POSTS = [
-  {
-    id: "big-o-intuition",
-    title: "Big-O Notation: An Intuition-First Guide",
-    topic: "Algorithms",
-    date: "2026-06-12",
-    readTime: "7 min",
-    excerpt: "Forget memorizing the cheat sheet. Here's how to actually feel why O(n log n) beats O(n²) before you ever do the math.",
-    cover: "amber"
-  },
-  {
-    id: "b-trees-explained",
-    title: "Why Databases Love B-Trees",
-    topic: "DBMS",
-    date: "2026-05-28",
-    readTime: "9 min",
-    excerpt: "Indexes make queries fast — but why a B-tree and not a binary search tree? We dig into branching factor and disk reads.",
-    cover: "violet"
-  },
-  {
-    id: "deadlocks-demystified",
-    title: "Deadlocks, Demystified",
-    topic: "Operating System",
-    date: "2026-05-09",
-    readTime: "6 min",
-    excerpt: "Four conditions, one circular wait. A walk-through of how deadlocks form and the strategies OS schedulers use to dodge them.",
-    cover: "mint"
-  },
-  {
-    id: "tcp-three-way-handshake",
-    title: "The TCP Handshake, Packet by Packet",
-    topic: "Computer Networks",
-    date: "2026-04-22",
-    readTime: "5 min",
-    excerpt: "SYN, SYN-ACK, ACK — three packets that quietly start every reliable connection on the internet.",
-    cover: "amber"
-  },
-  {
-    id: "gradient-descent-by-hand",
-    title: "Gradient Descent, Computed by Hand",
-    topic: "Machine Learning",
-    date: "2026-04-03",
-    readTime: "10 min",
-    excerpt: "Before you call .fit(), trace one full update step yourself. It changes how you debug training curves forever.",
-    cover: "violet"
-  },
-  {
-    id: "prompting-as-engineering",
-    title: "Prompting Is an Engineering Discipline Now",
-    topic: "AI Tools",
-    date: "2026-03-19",
-    readTime: "6 min",
-    excerpt: "Treat prompts like code: version them, test them, and review them. Here's a lightweight workflow that scales.",
-    cover: "mint"
-  }
-];
+
 
 //----- Testimonials ------
 const TESTIMONIALS = [

@@ -22,7 +22,7 @@
   <div class="container">
     <a href="index.html" class="logo">
         <img
-            id="siteLogo"
+            id="navLogo"
             src="images/Anra white logo.png"
             alt="ANRA Institute Logo">
       </a>
@@ -58,17 +58,25 @@
 <!-- ============================================================ -->
 <header class="hero" style="padding: 4rem 0 2rem;">
   <div class="container">
-    <span class="hero-kicker">// notes on computer science</span>
-    <h1 style="font-size:clamp(2rem,4vw,3rem);">The CS.edu blog</h1>
+   <!-- <span class="hero-kicker">// notes on computer science</span> -->
+    <h1 style="font-size:clamp(2rem,4vw,3rem);">The ANRA INSTITUTE Blog</h1>
     <p class="lead">Intuition-first articles that sit alongside the courses — read in five minutes, remember for years.</p>
   </div>
 </header>
 
 <!-- ============================================================ -->
+<!-- show the latest or featured blog                                                   -->
+<!-- ============================================================ -->
+<section class="container mb-5">
+
+    <div id="featuredPost"></div>
+
+</section>
+<!-- ============================================================ -->
 <!-- TOPIC FILTER CHIPS                                            -->
 <!-- ============================================================ -->
 <section class="container mb-3">
-  <div class="d-flex flex-wrap gap-2" id="blogFilters"></div>
+  <div class="d-flex flex-wrap gap-2" id="blogFilters"style="margin-top:50px"></div>
 </section>
 
 <!-- ============================================================ -->
@@ -93,7 +101,7 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-<script src="data.js"></script>
+<script src="data_blog.js"></script>
 <script src="script.js"></script>
 <script>
   /* ---------------------------------------------------------------
@@ -107,20 +115,105 @@
 
     const topics = ["All", ...new Set(BLOG_POSTS.map(p => p.topic))];
 
-    function renderGrid(filter) {
-      const posts = filter === "All" ? BLOG_POSTS : BLOG_POSTS.filter(p => p.topic === filter);
-      grid.innerHTML = posts.map(p => `
+    function renderGrid(filter = "All") {
+
+    const keyword =
+        document
+        .getElementById("blogSearchInput")
+        .value
+        .toLowerCase();
+
+    const posts = BLOG_POSTS.filter(post => {
+
+        const topicMatch =
+            filter === "All" ||
+            post.topic === filter;
+
+        const searchMatch =
+            post.title.toLowerCase().includes(keyword) ||
+            post.excerpt.toLowerCase().includes(keyword);
+
+        return topicMatch && searchMatch;
+    });
+
+    grid.innerHTML =
+        posts.map(post => `
+
         <div class="col-md-6 col-lg-4 reveal in">
-          <div class="blog-card">
-            <div class="blog-cover ${p.cover}"># ${p.topic}</div>
-            <div class="blog-body">
-              <div class="blog-meta">${new Date(p.date).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})} · ${p.readTime} read</div>
-              <h3>${p.title}</h3>
-              <p>${p.excerpt}</p>
-            </div>
-          </div>
-        </div>`).join("") || `<p class="text-center" style="color:var(--text-faint)">No articles in this topic yet.</p>`;
-    }
+
+            <article class="blog-card h-100">
+
+                <a
+                    href="post.html?id=${post.id}"
+                    class="text-decoration-none">
+
+                    ${
+                        post.image
+                        ?
+                        `<img
+                            src="${post.image}"
+                            alt="${post.title}"
+                            class="img-fluid blog-image">`
+                        :
+                        `<div class="blog-cover ${post.cover}">
+                            # ${post.topic}
+                         </div>`
+                    }
+
+                    <div class="blog-body">
+
+                        <div class="blog-meta">
+
+                            <span>
+                            ${new Date(post.date)
+                                .toLocaleDateString(
+                                "en-US",
+                                {
+                                    month:"short",
+                                    day:"numeric",
+                                    year:"numeric"
+                                })}
+                            </span>
+
+                            <span>
+                                · ${post.readTime}
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            ${post.title}
+                        </h3>
+
+                        <p>
+                            ${post.excerpt}
+                        </p>
+
+                        <span
+                            class="read-more">
+
+                            Read Article →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+        </div>
+
+        `).join("")
+
+        ||
+
+        `<div class="col-12 text-center py-5">
+            <h4>No Articles Found</h4>
+            <p style="color:var(--text-faint)">
+                Try another keyword or topic.
+            </p>
+        </div>`;
+}
 
     filterBar.innerHTML = topics.map((t, i) => `
       <button class="btn-outline-mint btn btn-sm filter-chip ${i === 0 ? 'active-chip' : ''}" data-topic="${t}"
@@ -135,6 +228,26 @@
         renderGrid(btn.dataset.topic);
       });
     });
+    const searchInput =
+    document.getElementById(
+        "blogSearchInput"
+    );
+
+searchInput.addEventListener(
+    "input",
+    () => {
+
+        const activeFilter =
+            document
+            .querySelector(
+                ".filter-chip[style*='var(--mint)']"
+            )?.dataset.topic
+            || "All";
+
+        renderGrid(activeFilter);
+
+    }
+);
 
     renderGrid("All");
   });

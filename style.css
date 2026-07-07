@@ -134,7 +134,7 @@ a{ color: inherit; text-decoration: none; }
 
 .btn-outline-mint{
   background: transparent;
-  color: #ffffff;
+  color: #fbbf24;
   border: 1px solid #232b36;
   font-weight: 600;
   padding: .68rem 1.6rem;
@@ -589,6 +589,19 @@ a{ color: inherit; text-decoration: none; }
 }
 .blog-body h3{ font-size: 1.02rem; margin-bottom: .6rem; }
 .blog-body p{ color: var(--text-dim); font-size: .87rem; }
+.blog-image{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:20px 20px 0 0;
+}
+
+.read-more{
+    display:inline-block;
+    margin-top:12px;
+    color:var(--mint);
+    font-weight:600;
+}
 
 /* ===========================
    TESTIMONIAL CAROUSEL
