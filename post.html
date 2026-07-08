@@ -249,6 +249,136 @@ body{
     text-decoration:none;
 }
 
+/* -------------------------------------------------------
+   TOC STYLING
+------------------------------------------------------- */
+
+/* =========================
+   TOC
+========================= */
+/* ==========================
+   MOBILE TOC BUTTON
+========================== */
+
+.toc-toggle{
+
+    position:fixed;
+
+    left:15px;
+
+    bottom:20px;
+
+    width:55px;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#06b6d4;
+
+    color:#fff;
+
+    font-size:1.8rem;
+
+    z-index:9999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.25);
+}
+
+/* ==========================
+   TOC LINKS
+========================== */
+
+#toc,
+#mobile-toc{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+}
+
+#toc li,
+#mobile-toc li{
+
+    margin-bottom:8px;
+}
+
+#toc a,
+#mobile-toc a{
+
+    display:block;
+
+    padding:10px 14px;
+
+    text-decoration:none;
+
+    color:#64748b;
+
+    border-radius:10px;
+
+    transition:.3s;
+}
+
+#toc a:hover,
+#mobile-toc a:hover{
+
+    background:#e2e8f0;
+}
+
+#toc a.active,
+#mobile-toc a.active{
+
+    background:#06b6d4;
+
+    color:#fff;
+
+    font-weight:600;
+}
+
+/* Desktop Sticky TOC */
+
+@media(min-width:992px){
+
+    .sidebar-card{
+
+        position:sticky;
+
+        top:100px;
+
+        max-height:80vh;
+
+        overflow-y:auto;
+    }
+
+}
+
+/* Mobile */
+
+@media(max-width:991px){
+
+    .sidebar-card{
+
+        position:relative !important;
+
+        top:auto !important;
+
+        max-height:none !important;
+
+        overflow:visible !important;
+    }
+
+}
 /* Footer */
 
 footer{
@@ -264,103 +394,33 @@ footer{
         position:relative;
         top:auto;
         margin-bottom:25px;
+        
     }
-
+    
     .blog-content{
         padding:25px;
     }
 }
 
-/* -------------------------------------------------------
-   TOC STYLING
-------------------------------------------------------- */
-
-#toc{
-    list-style:none;
-    padding:0;
-    margin:0;
-}
-
-#toc li{
-    margin-bottom:6px;
-}
-
-#toc a{
-
-    display:block;
-
-    padding:10px 12px;
-
-    color:#64748b;
-
-    text-decoration:none;
-
-    border-radius:10px;
-
-    transition:all .3s ease;
-
-    font-size:.95rem;
-}
-
-#toc a:hover{
-
-    background:#e2e8f0;
-
-    color:#0f172a;
-
-}
-
-#toc a.active{
-
-    background:#06b6d4;
-
-    color:white;
-
-    font-weight:600;
-
-    transform:translateX(5px);
-
-}
-
-/* Sticky TOC */
-
-.sidebar-card{
-
-    max-height:80vh;
-
-    overflow-y:auto;
-
-}
-
-/* Smooth Scroll */
-
-html{
-
-    scroll-behavior:smooth;
-
-}
-
-/* TOC Scrollbar */
-
-.sidebar-card::-webkit-scrollbar{
-
-    width:6px;
-
-}
-
-.sidebar-card::-webkit-scrollbar-thumb{
-
-    background:#cbd5e1;
-
-    border-radius:10px;
-
-}
 
 
 </style>
 
 </head>
 <body>
+
+<!-- Mobile TOC Button -->
+
+<button
+    class="toc-toggle d-lg-none"
+    type="button"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#tocOffcanvas"
+    aria-label="Open Contents">
+
+    <i class="bi bi-list"></i>
+
+</button>
 
 <div id="progressBar"></div>
 
@@ -413,19 +473,51 @@ html{
 
 <div class="row g-4">
 
-<!-- TOC -->
+<!-- =========================
+     MOBILE TOC
+========================= -->
 
-<div class="col-lg-3">
+<!-- Mobile TOC -->
 
-<div class="sidebar-card">
+<div
+    class="offcanvas offcanvas-start"
+    tabindex="-1"
+    id="tocOffcanvas">
 
-<h5>
-Contents
-</h5>
+    <div class="offcanvas-header">
 
-<ul id="toc"></ul>
+        <h5 class="offcanvas-title">
+            Contents
+        </h5>
+
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas">
+        </button>
+
+    </div>
+
+    <div class="offcanvas-body">
+
+        <ul id="mobile-toc"></ul>
+
+    </div>
 
 </div>
+<!-- =========================
+     DESKTOP TOC
+========================= -->
+
+<div class="col-lg-3 d-none d-lg-block">
+
+    <div class="sidebar-card">
+
+        <h5>Contents</h5>
+
+        <ul id="toc"></ul>
+
+    </div>
 
 </div>
 
@@ -508,7 +600,7 @@ All Rights Reserved.
 </footer>
 
 <!-- BLOG DATA -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 <script src="data_blog.js"></script>
 
 <script>
@@ -583,87 +675,78 @@ setTimeout(() => {
             "#blogPost h2"
         );
 
-    const toc =
-        document.getElementById(
-            "toc"
-        );
+    const desktopToc =
+        document.getElementById("toc");
 
-    toc.innerHTML = "";
+    const mobileToc =
+        document.getElementById("mobile-toc");
 
-    headings.forEach(
-        (heading, index) => {
+    desktopToc.innerHTML = "";
+
+    if(mobileToc){
+        mobileToc.innerHTML = "";
+    }
+
+    headings.forEach((heading,index)=>{
 
         const headingId =
             "heading-" + index;
 
-        heading.id =
-            headingId;
+        heading.id = headingId;
 
-        toc.innerHTML += `
+        const item = `
             <li>
                 <a
                     href="#${headingId}"
                     class="toc-link">
-
                     ${heading.innerText}
-
                 </a>
             </li>
         `;
+        
+        desktopToc.innerHTML += item;
+
+        if(mobileToc){
+            mobileToc.innerHTML += item;
+        }
 
     });
 
-    const tocLinks =
+    const links =
         document.querySelectorAll(
             ".toc-link"
         );
 
-    function highlightTOC() {
+    function highlightTOC(){
 
-        let currentSection = "";
+        let current = "";
 
-        headings.forEach(section => {
+        headings.forEach(section=>{
 
             const sectionTop =
-                section.offsetTop - 180;
+                section.offsetTop - 150;
 
-            const sectionHeight =
-                section.offsetHeight;
-
-            if (
-                window.scrollY >=
-                sectionTop
-            ) {
-
-                currentSection =
-                    section.id;
-
+            if(
+                window.scrollY >= sectionTop
+            ){
+                current = section.id;
             }
 
         });
 
-        tocLinks.forEach(link => {
+        links.forEach(link=>{
 
             link.classList.remove(
                 "active"
             );
 
-            if (
-                link.getAttribute(
-                    "href"
-                ) ===
-                "#" + currentSection
-            ) {
-
+            if(
+                link.getAttribute("href")
+                === "#" + current
+            ){
                 link.classList.add(
                     "active"
                 );
-
-                link.scrollIntoView({
-                    block:"nearest",
-                    behavior:"smooth"
-                });
-
             }
 
         });
@@ -677,8 +760,26 @@ setTimeout(() => {
         highlightTOC
     );
 
-}, 100);
+},100);
 
+document.addEventListener("click", function(e){
+
+    const link = e.target.closest(".toc-link");
+
+    if(!link) return;
+
+    const panel = document.getElementById("tocOffcanvas");
+
+    if(!panel) return;
+
+    const offcanvas =
+        bootstrap.Offcanvas.getOrCreateInstance(panel);
+
+    setTimeout(() => {
+        offcanvas.hide();
+    }, 100);
+
+});
 
 /* Related */
 
