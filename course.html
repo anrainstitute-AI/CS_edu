@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Course | ANRA Institute</title>
+<meta name="description" id="metaDescription" content="Course details — ANRA Institute">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+  .course-meta-row{
+    display:flex; flex-wrap:wrap; gap:.6rem 1.4rem;
+    font-family:var(--font-mono); font-size:.85rem; color:var(--text-dim);
+    margin-top:1rem;
+  }
+  .course-meta-row i{ color: var(--mint); margin-right:.35rem; }
+  .learn-list, .req-list{ list-style:none; padding:0; margin:0; }
+  .learn-list li{ display:flex; gap:.7rem; margin-bottom:.9rem; color:var(--text-dim); font-size:.94rem; }
+  .learn-list li i{ color:var(--mint); font-size:1.1rem; flex-shrink:0; margin-top:.15rem; }
+  .req-list li{ margin-bottom:.6rem; color:var(--text-dim); font-size:.9rem; padding-left:1.2rem; position:relative; }
+  .req-list li::before{ content:"—"; position:absolute; left:0; color:var(--text-faint); }
+  .curric-lessons{ list-style:none; padding-left:0; margin:0; }
+  .curric-lessons li{ padding:.45rem 0; color:var(--text-dim); font-size:.87rem; display:flex; gap:.6rem; }
+  .curric-lessons li i{ color:var(--text-faint); font-size:.8rem; margin-top:.3rem; }
+  .sidebar-sticky{ position:sticky; top:100px; }
+  .includes-list{ list-style:none; padding:0; margin:1.2rem 0; }
+  .includes-list li{ display:flex; gap:.7rem; margin-bottom:.7rem; font-size:.87rem; color:var(--text-dim); }
+  .includes-list li i{ color:var(--mint); }
+  .instructor-row{ display:flex; align-items:center; gap:1rem; }
+  .instructor-row img{ width:60px; height:60px; border-radius:50%; object-fit:cover; }
+</style>
+</head>
+<body style="background: var(--bg-elevated);">
+
+<!-- ============================================================ -->
+<!-- NAVIGATION BAR                                                -->
+<!-- ============================================================ -->
+<nav class="navbar navbar-expand-lg navbar-cs">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <img id="navbarLogo" src="images/Anra white logo.png" alt="ANRA Institute Logo">
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse">
+      <i class="bi bi-list fs-2" style="color:var(--text)"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navCollapse">
+      <ul class="navbar-nav mx-auto mt-3 mt-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html#top">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#courses">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#testimonials">Testimonials</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#faq">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+          <i class="bi bi-sun"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================ -->
+<!-- COURSE HERO                                                   -->
+<!-- ============================================================ -->
+<header class="blog-hero">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <span class="hero-badge" id="courseTopicBadge">COURSE</span>
+    <h1 id="courseTitle">Loading…</h1>
+    <div class="hero-line"></div>
+    <p id="courseBlurb">Loading course details…</p>
+    <div class="course-meta-row" id="courseMetaRow"></div>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- MAIN CONTENT                                                  -->
+<!-- ============================================================ -->
+<section class="section pt-5">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- LEFT: course details -->
+      <div class="col-lg-8">
+
+        <div class="dash-card mb-4">
+          <h3 class="mb-3">About this course</h3>
+          <p id="courseDescription" style="color:var(--text-dim);"></p>
+        </div>
+
+        <div class="dash-card mb-4">
+          <h3 class="mb-3">What you'll learn</h3>
+          <ul class="learn-list" id="learnList"></ul>
+        </div>
+
+        <div class="dash-card mb-4">
+          <h3 class="mb-3">Curriculum</h3>
+          <div id="curriculumList"></div>
+        </div>
+
+        <div class="dash-card mb-4">
+          <h3 class="mb-3">Requirements</h3>
+          <ul class="req-list" id="requirementsList"></ul>
+        </div>
+
+        <div class="dash-card">
+          <h3 class="mb-3">Your instructor</h3>
+          <div class="instructor-row">
+            <img id="instructorImage" src="images/mansi-garg.jpg" alt="Instructor">
+            <div>
+              <strong id="instructorName" style="font-family:var(--font-display)"></strong>
+              <div id="instructorTitle" style="color:var(--text-faint); font-size:.85rem;"></div>
+            </div>
+          </div>
+          <p class="mt-3 mb-0" id="instructorBio" style="color:var(--text-dim); font-size:.92rem;"></p>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: sticky enroll sidebar -->
+      <div class="col-lg-4">
+        <div class="sidebar-sticky">
+          <div class="dash-card">
+            <div class="topic-icon badge-mint" id="sidebarIcon" style="margin-bottom:1rem;">
+              <i class="bi bi-mortarboard"></i>
+            </div>
+            <h4 id="sidebarTitle" class="mb-2">—</h4>
+            <div class="d-flex align-items-center gap-2 mb-3" style="font-size:.9rem;">
+              <span class="stars" style="color:var(--amber)"><i class="bi bi-star-fill"></i> <span id="sidebarRating"></span></span>
+              <span style="color:var(--text-faint)">· <span id="sidebarStudents"></span> students</span>
+            </div>
+
+            <ul class="includes-list" id="includesList"></ul>
+
+            <a href="index.html#contact" class="btn-mint btn w-100">Enroll Now <i class="bi bi-arrow-right ms-1"></i></a>
+            <a href="index.html#courses" class="btn-outline-mint btn w-100 mt-2">← Back to all courses</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- RELATED COURSES                                               -->
+<!-- ============================================================ -->
+<section class="section pt-0">
+  <div class="container">
+    <h2 class="section-title">You might also like</h2>
+    <div class="row g-4" id="relatedCourses"></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+<footer class="footer-cs">
+  <div class="container">
+    <div class="footer-bottom d-flex justify-content-between flex-wrap gap-2">
+      <span>© 2026 ANRA INSTITUTE — built for learners.</span>
+      <a href="index.html" style="margin:0;">← Back to home</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="data.js"></script>
+<script src="script.js"></script>
+<script>
+  /* ---------------------------------------------------------------
+     Page-specific behaviour: read ?id=, render the matching course.
+     Lives here (not script.js) since it's only relevant to course.html.
+     --------------------------------------------------------------- */
+  document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const course = typeof COURSES !== "undefined" ? COURSES.find(c => c.id === id) : null;
+
+    if (!course) {
+      document.getElementById("courseTitle").innerText = "Course Not Found";
+      document.getElementById("courseBlurb").innerText = "The course you're looking for doesn't exist or may have moved.";
+      document.getElementById("courseMetaRow").innerHTML = "";
+      return;
+    }
+
+    /* ---- Hero ---- */
+    document.title = course.title + " | ANRA Institute";
+    document.getElementById("pageTitle").innerText = course.title + " | ANRA Institute";
+    document.getElementById("metaDescription").setAttribute("content", course.blurb);
+    document.getElementById("courseTopicBadge").innerText = course.topic.toUpperCase();
+    document.getElementById("courseTitle").innerText = course.title;
+    document.getElementById("courseBlurb").innerText = course.blurb;
+
+    document.getElementById("courseMetaRow").innerHTML = `
+      <span><i class="bi bi-bar-chart-steps"></i>${course.level || "All levels"}</span>
+      <span><i class="bi bi-clock"></i>${course.duration || "Self-paced"}</span>
+      <span><i class="bi bi-collection-play"></i>${course.lessons || "—"} lessons</span>
+      <span><i class="bi bi-star-fill"></i>${course.rating} rating</span>
+    `;
+
+    /* ---- About ---- */
+    document.getElementById("courseDescription").innerText =
+      course.description || course.blurb;
+
+    /* ---- What you'll learn ---- */
+    const learnList = document.getElementById("learnList");
+    learnList.innerHTML = (course.learn || []).map(item => `
+      <li><i class="bi bi-check-circle-fill"></i><span>${item}</span></li>
+    `).join("") || "<li>Details coming soon.</li>";
+
+    /* ---- Curriculum accordion (reuses FAQ styling) ---- */
+    const curriculumList = document.getElementById("curriculumList");
+    if (course.curriculum && course.curriculum.length) {
+      curriculumList.innerHTML = course.curriculum.map((mod, i) => `
+        <div class="faq-item" id="mod-${i}">
+          <div class="faq-q">
+            <span>${mod.title}</span>
+            <i class="bi bi-plus-lg"></i>
+          </div>
+          <div class="faq-a" style="max-height:none; padding:0 1.4rem;">
+            <ul class="curric-lessons">
+              ${mod.lessons.map(l => `<li><i class="bi bi-dot"></i>${l}</li>`).join("")}
+            </ul>
+          </div>
+        </div>
+      `).join("");
+
+      curriculumList.querySelectorAll(".faq-item").forEach(item => {
+        const answer = item.querySelector(".faq-a");
+        answer.style.maxHeight = "0px";
+        answer.style.paddingBottom = "0px";
+        item.querySelector(".faq-q").addEventListener("click", () => {
+          const wasOpen = item.classList.contains("open");
+          curriculumList.querySelectorAll(".faq-item.open").forEach(o => {
+            o.classList.remove("open");
+            o.querySelector(".faq-a").style.maxHeight = "0px";
+          });
+          if (!wasOpen) {
+            item.classList.add("open");
+            answer.style.maxHeight = answer.scrollHeight + 40 + "px";
+          }
+        });
+      });
+    } else {
+      curriculumList.innerHTML = "<p style='color:var(--text-faint)'>Curriculum coming soon.</p>";
+    }
+
+    /* ---- Requirements ---- */
+    const reqList = document.getElementById("requirementsList");
+    reqList.innerHTML = (course.requirements || []).map(r => `<li>${r}</li>`).join("")
+      || "<li>No prerequisites listed.</li>";
+
+    /* ---- Instructor ---- */
+    if (typeof INSTRUCTOR !== "undefined") {
+      document.getElementById("instructorImage").src = INSTRUCTOR.image;
+      document.getElementById("instructorName").innerText = INSTRUCTOR.name;
+      document.getElementById("instructorTitle").innerText = INSTRUCTOR.title;
+      document.getElementById("instructorBio").innerText = INSTRUCTOR.bio;
+    }
+
+    /* ---- Sidebar ---- */
+    document.getElementById("sidebarIcon").innerHTML = `<i class="bi bi-${course.icon}"></i>`;
+    document.getElementById("sidebarIcon").className = "topic-icon badge-" + course.color;
+    document.getElementById("sidebarTitle").innerText = course.title;
+    document.getElementById("sidebarRating").innerText = course.rating;
+    document.getElementById("sidebarStudents").innerText = course.students.toLocaleString();
+
+    document.getElementById("includesList").innerHTML = `
+      <li><i class="bi bi-camera-video"></i>${course.duration || "Self-paced"} of content</li>
+      <li><i class="bi bi-journal-code"></i>${course.lessons || "Multiple"} lessons</li>
+      <li><i class="bi bi-infinity"></i>Lifetime access</li>
+      <li><i class="bi bi-patch-check"></i>Certificate on completion</li>
+    `;
+
+    /* ---- Related courses (same topic, excluding this one) ---- */
+    let related = COURSES.filter(c => c.topic === course.topic && c.id !== course.id);
+    if (related.length < 3) {
+      const extra = COURSES.filter(c => c.id !== course.id && !related.includes(c));
+      related = related.concat(extra).slice(0, 3);
+    } else {
+      related = related.slice(0, 3);
+    }
+
+    document.getElementById("relatedCourses").innerHTML = related.map(c => `
+      <div class="col-md-6 col-lg-4 reveal in">
+        <a href="course.html?id=${c.id}" class="text-decoration-none">
+          <div class="course-card">
+            <div class="card-top">
+              <div class="topic-icon badge-${c.color}"><i class="bi bi-${c.icon}"></i></div>
+            </div>
+            <h3>${c.title}</h3>
+            <p>${c.blurb}</p>
+            <div class="course-meta">
+              <span class="stars"><i class="bi bi-star-fill"></i> ${c.rating}</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    `).join("");
+  });
+</script>
+</body>
+</html>

@@ -9,7 +9,7 @@ const BLOG_POSTS = [
     readTime: "8 min",
     excerpt: "Prepare for your SQL interviews with the top 10 most frequently asked SQL interview questions and answers.",
 
-    image: "images/sql-interview.jpg",
+    image: "images/sql-interview.png",
 
     content: `
 

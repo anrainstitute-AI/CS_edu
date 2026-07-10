@@ -46,19 +46,21 @@ document.addEventListener("DOMContentLoaded", () => {
   function courseCardHTML(c) {
     return `
       <div class="col-md-6 col-lg-3 reveal">
-        <div class="course-card" data-course="${c.id}">
-          <div class="card-top">
-            <!--<span class="badge-ext badge-${c.color}">${c.ext}</span>-->
-            <div class="topic-icon badge-${c.color}"><i class="bi bi-${c.icon}"></i></div>
-            <!--<span class="badge-ext badge-${c.color}">${c.level}</span> -->
+        <a href="course.html?id=${c.id}" class="text-decoration-none">
+          <div class="course-card" data-course="${c.id}">
+            <div class="card-top">
+              <!--<span class="badge-ext badge-${c.color}">${c.ext}</span>-->
+              <div class="topic-icon badge-${c.color}"><i class="bi bi-${c.icon}"></i></div>
+              <!--<span class="badge-ext badge-${c.color}">${c.level}</span> -->
+            </div>
+            <h3>${c.title}</h3>
+            <p>${c.blurb}</p>
+            <div class="course-meta">
+              <!-- <span><i class="bi bi-clock"></i> ${c.duration}</span> -->
+              <span class="stars"><i class="bi bi-star-fill"></i> ${c.rating}</span>
+            </div>
           </div>
-          <h3>${c.title}</h3>
-          <p>${c.blurb}</p>
-          <div class="course-meta">
-            <!-- <span><i class="bi bi-clock"></i> ${c.duration}</span> -->
-            <span class="stars"><i class="bi bi-star-fill"></i> ${c.rating}</span>
-          </div>
-        </div>
+        </a>
       </div>`;
   }
 
@@ -348,4 +350,3 @@ function updateLogo(theme) {
         footerLogo.src = logoSrc;
     }
 }
-
